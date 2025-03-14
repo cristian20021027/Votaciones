@@ -110,12 +110,14 @@ function Votaciones() {
       {renderSeccion('Personero Estudiantil', 'personero', [
         { nombre: 'SAMUEL SANCHEZ CORDERO 01 (Personero)', foto: '/img/01.png' },
         { nombre: 'ALBEIRO BERRÍO DOMÍNGUEZ 02 (Personero)', foto: '/img/02.png' },
-        { nombre: 'ELIAM TORRENEGRA MANGA 03 (Personero)', foto: '/img/03.png' }
+        { nombre: 'ELIAM TORRENEGRA MANGA 03 (Personero)', foto: '/img/03.png' },
+        { nombre: 'VOTO EN BLANCO (personero)', foto:'/img/voto.jpg'}
       ])}
       {renderSeccion('Contralor Estudiantil', 'contraloria', [
         { nombre: 'OSMARLY GONZÁLEZ MUÑOZ 01 (contraloria)', foto: '/img/04.png' },
         { nombre: 'DORETHY PARADA HERRERA 02 (contraloria)', foto: '/img/05.png' },
-        { nombre: 'JUAN PÉREZ MORALES 03 (contraloria)' , foto: '/img/06.png' }
+        { nombre: 'JUAN PÉREZ MORALES 03 (contraloria)' , foto: '/img/06.png' },
+        { nombre: 'VOTO EN BLANCO (contraloria)', foto:'/img/voto.jpg'}
       ])}
     </div>
   );
