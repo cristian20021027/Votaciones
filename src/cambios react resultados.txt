@@ -17,9 +17,15 @@ function Resultados() {
   // Calcular la suma total de votos
   const totalVotos = Object.values(resultados).reduce((acc, votos) => acc + votos, 0);
 
+  // Función para imprimir
+  const imprimirResultados = () => {
+    window.print();
+  };
+
   return (
     <div style={{ textAlign: 'center', padding: '20px', backgroundColor: '#f0f4f8', borderRadius: '10px' }}>
       <h1 style={{ color: '#3a79cc', padding: '10px' }}>Resultados de las Votaciones</h1>
+      
       <table style={{ width: '90%', margin: '20px auto', borderCollapse: 'collapse', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', borderRadius: '10px', overflow: 'hidden' }}>
         <thead>
           <tr style={{ backgroundColor: '#0984e3', color: '#fff' }}>
@@ -37,13 +43,25 @@ function Resultados() {
               </tr>
             );
           })}
-          {/* Fila para la suma total de votos */}
           <tr style={{ backgroundColor: '#dfe6e9', fontWeight: 'bold' }}>
             <td style={{ padding: '15px', border: '1px solid #ccc' }}>Total de Votos</td>
             <td style={{ padding: '15px', border: '1px solid #ccc' }}>{totalVotos}</td>
           </tr>
         </tbody>
       </table>
+
+      {/* Botón para imprimir */}
+      <button 
+        onClick={imprimirResultados} 
+        style={{ padding: '10px 20px', backgroundColor: '#0984e3', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer' }}
+      >
+        Descargar PDF
+      </button>
+
+      {/* Estilos para ocultar el botón al imprimir */}
+      <style>
+        {`@media print { button { display: none; } }`}
+      </style>
     </div>
   );
 }
