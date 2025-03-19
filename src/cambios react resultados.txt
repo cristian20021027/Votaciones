@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { io } from 'socket.io-client';
 
-const socket = io('http://192.168.1.164:3000');
+const socket = io('http://10.10.11.77:3000');
 
 function Resultados() {
   const [resultados, setResultados] = useState({});
@@ -16,6 +16,10 @@ function Resultados() {
 
   // Calcular la suma total de votos
   const totalVotos = Object.values(resultados).reduce((acc, votos) => acc + votos, 0);
+
+  // Encontrar los dos candidatos con más votos
+  const sortedResultados = Object.entries(resultados).sort((a, b) => b[1] - a[1]);
+  const topCandidatos = sortedResultados.slice(0, 2).map(([clave]) => clave);
 
   // Función para imprimir
   const imprimirResultados = () => {
@@ -34,12 +38,13 @@ function Resultados() {
           </tr>
         </thead>
         <tbody>
-          {Object.entries(resultados).map(([clave, votos]) => {
+          {sortedResultados.map(([clave, votos]) => {
             const candidato = clave.includes('-') ? clave.split('-')[1]?.trim() : clave;
+            const esTop = topCandidatos.includes(clave);
             return (
-              <tr key={clave} style={{ backgroundColor: '#ffffff' }}>
-                <td style={{ padding: '15px', border: '1px solid #ccc' }}>{candidato || 'Desconocido'}</td>
-                <td style={{ padding: '15px', border: '1px solid #ccc' }}>{votos}</td>
+              <tr key={clave} style={{ backgroundColor: esTop ? '#b3d9ff' : '#ffffff', fontWeight: esTop ? 'bold' : 'normal' }}>
+                <td style={{ padding: '15px', border: '1px solid #ccc', color: esTop ? '#074f9b' : '#000' }}>{candidato || 'Desconocido'}</td>
+                <td style={{ padding: '15px', border: '1px solid #ccc', color: esTop ? '#074f9b' : '#000' }}>{votos}</td>
               </tr>
             );
           })}
